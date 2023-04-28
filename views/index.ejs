@@ -32,7 +32,7 @@
     <script>
       // Create the script tag, set the appropriate attributes
       var script = document.createElement('script');
-      const apiKey = 'AIzaSyDmiEZVYtyD8hd13Bg9E2zSa5kQtmeC3Sk';
+      const apiKey = '<%= typeof apiKey !== "undefined" ? apiKey : "" %>';
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
       script.async = true;
     
