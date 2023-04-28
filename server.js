@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
+require('dotenv').config();
 
-const apiKey = '26b660f3c823da707c6483ce3872eb4c';
-// const mapAPI = 'AIzaSyDmiEZVYtyD8hd13Bg9E2zSa5kQtmeC3Sk';
+const apiKey = process.env.WEATHER_API_KEY;
 
 app.use('/public/css', express.static(__dirname + '/public/css', { 
   setHeaders: function (res, path, stat) {
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-  res.render('index', { weather: null, error: null });
+  res.render('index', { weather: null, error: null, apiKey: process.env.MAPS_API_KEY});
 })
 
 app.post('/', function (req, res) {
@@ -33,7 +33,7 @@ app.post('/', function (req, res) {
         let weatherText = `It's ${weather.main.temp} degrees in ${weather.name} with humidity of ${weather.main.humidity}!`;
         let latitude = parseFloat(weather.coord.lat);
         let longitude = parseFloat(weather.coord.lon);
-        res.render('index', { weather: weatherText, error: null, lat: latitude, lon: longitude, apiKey: apiKey });
+        res.render('index', { weather: weatherText, error: null, lat: latitude, lon: longitude, apiKey: process.env.MAPS_API_KEY});
       }
     }
   });
