@@ -2,6 +2,7 @@ body {
     width: 800px;
     margin: 0 auto;
     font-family: 'Open Sans', sans-serif;
+    /* background-color: ; */
   }
   .container {
     width: 600px;
@@ -22,7 +23,7 @@ body {
     border-image-outset: initial;
     border-image-repeat: initial;
     min-width: -webkit-min-content;
-    padding: 30px;
+    padding: 20px;
   }
   .ghost-input, p {
     display: block;
@@ -67,3 +68,10 @@ body {
   p {
     color: #E64A19;
   }
+
+  #map {
+  width: 500px;
+  height: 380px;
+  border:2px solid #515151;
+  margin: 10 auto; /* This will center the map horizontally within its container */
+} 
