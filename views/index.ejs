@@ -12,6 +12,7 @@
     </style>
   </head>
   <body>
+    <div class="box">
     <div class="container">
       <fieldset>
         <form action="/" method="post">
@@ -29,32 +30,39 @@
     </div>
     <div id="map"></div>
     <script>
+      // Create the script tag, set the appropriate attributes
+      var script = document.createElement('script');
+      const apiKey = 'AIzaSyDmiEZVYtyD8hd13Bg9E2zSa5kQtmeC3Sk';
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+      script.async = true;
+    
+      // Append the 'script' element to 'head'
+      document.head.appendChild(script);
+    
       function initMap() {
-        // Retrieve the latitude and longitude from the server response
-        const lat = <%= lat %>;
-        const lon = <%= lon %>;
-
-        // Create a new map centered on the coordinates retrieved from the weather API
+        // Set default latitude and longitude values
+        let lat = 37.7749; // Default latitude (e.g., San Francisco)
+        let lon = -122.4194; // Default longitude (e.g., San Francisco)
+    
+        <% if(weather !== null && error === null){ %>
+          // If weather data is available, use the latitude and longitude from the server response
+          lat = <%= lat %>;
+          lon = <%= lon %>;
+        <% } %>
+    
+        // Create a new map centered on the coordinates
         const map = new google.maps.Map(document.getElementById("map"), {
           center: { lat, lng: lon },
-          zoom: 8,
+          zoom: 10,
         });
-      
+    
         // Add a marker to the map at the center coordinates
         const marker = new google.maps.Marker({
           position: { lat, lng: lon },
           map: map,
         });
       }
-
-      // Create the script tag, set the appropriate attributes
-      var script = document.createElement('script');
-      const apiKey = 'AIzaSyDmiEZVYtyD8hd13Bg9E2zSa5kQtmeC3Sk';
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-      script.async = true;
-
-      // Append the 'script' element to 'head'
-      document.head.appendChild(script);
     </script>
+    </div>
   </body>
 </html>
