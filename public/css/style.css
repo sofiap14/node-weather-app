@@ -11,6 +11,7 @@ body {
     height: 300px; /* Set the height of the box */
     padding: 10px; /* Add some padding inside the box */
     margin-top: 40px;
+    box-shadow: none;
   }
 
   .container {
@@ -55,10 +56,12 @@ body {
     -ms-transition: all 0.1s ease-in-out;
     -o-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
+    transition: transform .2s; /* Animation */
   }
 
   .ghost-input:focus {
     border-bottom:1px solid #ddd;
+    transform: scale(1.1)
   }
   .ghost-button {
     background-color: transparent;
@@ -76,7 +79,8 @@ body {
   .ghost-button:hover {
     border:2px solid rgb(216, 215, 215);
     border-radius: 20px;
-    background-color: white
+    background-color: white;
+    box-shadow: 1px 2px 10px #ebeef2
     
   }
   p {
@@ -84,9 +88,14 @@ body {
   }
 
   #map {
-  width: 400px;
-  height: 280px;
+  width: 810px;
+  height: 300px;
+  transition: transform .2s; /* Animation */
   border:2px solid #c5c5c5;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: none; 
   margin: 10 auto; /* This will center the map horizontally within its container */
 } 
+ #map:hover {
+  transform: scale(1.1)
+}
